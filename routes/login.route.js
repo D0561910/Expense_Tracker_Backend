@@ -15,7 +15,7 @@ const findUser = async (email, password) => {
 
   if (snapshot.empty) {
     console.log("No matching documents.");
-    return;
+    return false;
   }
 
   snapshot.forEach((element) => {

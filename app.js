@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 
 var accTrackerRouter = require('./routes/acctrack.route');
 var loginRouter = require('./routes/login.route');
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors()) // Use this after the variable declaration
 
 app.use('/api', accTrackerRouter);
 app.use('/api', loginRouter);

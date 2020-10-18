@@ -7,7 +7,8 @@ const firestore = admin.firestore();
 
 /* GET data. */
 router.get("/", async (req, res, next) => {
-  const expenseRef = firestore.collection("expense");
+  const { date } = req.query;
+  const expenseRef = firestore.collection("expense").where("date", "==", date);
   const doc = await expenseRef.get();
   const data = [];
   doc.forEach((docs) => {
@@ -45,7 +46,8 @@ router.put("/update", async (req, res, next) => {
 
 /* DELETE remove data. */
 router.delete("/delete", async (req, res, next) => {
-  const { id } = req.body;
+  // 當遇到需要使用連結後面帶 (?id=xxxxx) 這樣的是使用 req.query。 因為，接到之後會在 req.query 的 Object 中。
+  const { id } = req.query;
   await firestore.collection("expense").doc(id).delete();
 
   res.json({ msg: "Remove Successful" });
