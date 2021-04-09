@@ -1,0 +1,11 @@
+---
+application:
+  name: "expense-tracker-backend"
+  project: "node_backend_server"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-expense-tracker-backend"
+  routes:
+  - application_name: "expense-tracker-backend"
+    paths:
+    - "/*"
